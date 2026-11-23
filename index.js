@@ -1,9 +1,10 @@
 // VARIABLES & ELEMENTS
-const GAME_SECONDS = 48 * 60;
+const GAME_SECONDS = 48 * 60 * 1000;
 
 const timerEl = document.getElementById("game-time");
 let timerId = null;
 let remaining = GAME_SECONDS;
+let endTime = null
 renderTime();
 
 const leaderEl = document.getElementById("leader");
@@ -17,8 +18,9 @@ const timerControlBtn = document.getElementById("toggle-btn");
 
 // TIMER UTILITIES
 function formatTime(currTime) {
-    const mm = String(Math.floor(currTime / 60)).padStart(2, '0');
-    const ss = String(currTime % 60).padStart(2, '0');
+    const totalSeconds = Math.ceil(remaining / 1000);
+    const mm = String(Math.floor(totalSeconds / 60)).padStart(2, "0");
+    const ss = String(totalSeconds % 60).padStart(2, "0");
     
     return `${mm}:${ss}`;
 }
@@ -28,12 +30,14 @@ function renderTime() {
 }
 
 function updateTimer() {
-    --remaining;
+    remaining = Math.max(0, endTime - performance.now());
+    
     if (remaining == 0) {
         clearInterval(timerId);
         timerId = null;
         resetStart();
     }
+    
     renderTime();
 }
 
@@ -91,15 +95,15 @@ function toggleClasses() {
 
 function startTimer() {
     if (timerId !== null || remaining === 0) return;
-    
+    endTime = performance.now() + remaining;
     timerId = setInterval(updateTimer, 1000)
     toggleClasses();
     timerControlBtn.textContent = "PAUSE";
 }
 
 function pauseTimer() {
-    // if (remaining === 0) return;
     resetTimer("SOFT");
+    remaining = Math.max(0, endTime - performance.now());
     toggleClasses();
     timerControlBtn.textContent = "RESUME";
 }
