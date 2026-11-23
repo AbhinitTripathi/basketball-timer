@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <img src="/public/images/nba.png" alt="Classice Blue and Red logo of the National Basketball Association with the silouette of a player on right and N-B-A written on the left">
+        <div class="container timer-winner-container">
+            <div class="time"><span id="game-time">00:00<span></div>
+            <span id="leader">Lead : TIE</span>
+        </div>
+        <div class="container score-container">
+            <div>
+                <h3>HOME</h3>
+                <div class="scorecard">
+                    <div class="score" id="home-score">0</div>
+                    <div class="btn-container">
+                        <button class="btn" onclick="incrementScore('HOME', 1)">+1</button>
+                        <button class="btn" onclick="incrementScore('HOME', 2)">+2</button>
+                        <button class="btn" onclick="incrementScore('HOME', 3)">+3</button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3>GUEST</h3>
+                <div class="scorecard">
+                    <div class="score" id="guest-score">0</div>
+                    <div class="btn-container">
+                        <button class="btn" onclick="incrementScore('GUEST', 1)">+1</button>
+                        <button class="btn" onclick="incrementScore('GUEST', 2)">+2</button>
+                        <button class="btn" onclick="incrementScore('GUEST', 3)">+3</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button id="toggle-btn" class="ctrl-btn start" onclick="controlTimer()">START</button>
+            <button id="reset-btn" class="ctrl-btn reset" onclick="reset()">RESET</button>
+        </div>
+        
+        <script src="index.js"></script>
+    </body>
+</html>

@@ -1,0 +1,183 @@
+@font-face {
+    font-family: 'Digital';
+    src: url('public/fonts/Digital.woff2') format('woff2');
+}
+
+:root {
+    --bg-color: #1B244A;
+    --title-font: Verdana, Geneva, Tahoma, sans-serif;
+    --title-font-size: 40px;
+    --title-color: #FFFFFF;
+    
+    /* SCORECARD VARIABLES */
+    --scorecard-width: 600px;
+    --scorecard-height: 350px;
+    
+    /* TIME VARIABLES */
+    --time-width: 300px;
+    --time-height: 50px;
+    --time-color: #F94F6D;
+    --time-bg-color: #080001;
+    
+    /* SCORE VARIABLES */
+    --score-width: 150px;
+    --score-height: 120px;
+    --score-bg: #080001;
+    --score-font-size: 90px;
+    --score-color: #F94F6D;
+    
+    /* BUTTONS */
+    --btn-color: #9AABD8;
+    --btn-shadow: #56688F;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+    position: relative;
+}
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0; /* shorthand for top/right/bottom/left: 0 */
+    background-image: url("/public/images/basketball-court.jpg");
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px);
+    transform: scale(1.1);
+    z-index: -1;
+}
+
+img {
+    width: 200px;
+}
+
+.container {
+    display: flex;
+    background-color: var(--bg-color);
+    font-family: var(--title-font);
+    font-size: var(--title-font-size);
+    color: var(--title-color);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.timer-winner-container {
+    width: var(--scorecard-width);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+    gap: 20px;
+}
+
+.time {
+    width: var(--time-width);
+    height: var(--time-height);
+    background-color: var(--time-bg-color);
+    color: var(--time-color);
+    font-family: 'Digital';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.score-container {
+    width: var(--scorecard-width);
+    height: var(--scorecard-height);
+    justify-content: space-evenly;
+}
+
+h3 {
+    margin-top: 30px;
+}
+
+.scorecard {
+    margin-top: -20px;
+    font-family: 'Digital';
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.score {
+    width: var(--score-width);
+    height: var(--score-height);
+    margin: 0 auto 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--score-bg);
+    border-radius: 7px;
+    font-size: var(--score-font-size);
+    color: var(--score-color)
+    
+}
+
+.btn-container {
+    display: flex;
+    gap: 9px;
+    width: var(--score-width);
+}
+
+.btn {
+    font-family: inherit;
+    background: none;
+    color: var(--btn-color);
+    border: 2px solid var(--btn-color);
+    font-size: 18px;
+    padding: 10px;
+    height: 45px;
+    border-radius: 5px;
+    box-shadow: -2px 7px 0 var(--btn-shadow);
+}
+.btn:hover {
+    cursor: pointer;
+}
+.btn:active {
+    box-shadow: 0 0 0 var(--btn-shadow);
+}
+
+.ctrl-btn {
+  padding: 10px 24px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+  margin: 0 10px;
+}
+
+/* START state: green */
+.ctrl-btn.start {
+  background: #2ecc71;
+  color: #0b2b1a;
+  border: 2px solid #7ff0ae;
+  box-shadow: 0 6px 0 #1e8f50;
+}
+
+/* PAUSE state: amber */
+.ctrl-btn.pause {
+  background: #fbbf24;
+  color: #3b2a02;
+  border: 2px solid #fde08a;
+  box-shadow: 0 6px 0 #b7830a;
+}
+
+/* RESET: coral */
+.ctrl-btn.reset {
+  background: #ff6b81;
+  color: #3a0a14;
+  border: 2px solid #ffb3be;
+  box-shadow: 0 6px 0 #c23a52;
+}
+
+.ctrl-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
+}
